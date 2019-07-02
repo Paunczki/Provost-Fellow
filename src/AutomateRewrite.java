@@ -35,13 +35,13 @@ public class AutomateRewrite {
     static Double occurrence;
 
     static double avgBigTime1; static double percentCalculator1; static double total1;
-    static int presentPackets1; static int missingPackets1; static int counter1;
+    static int presentPackets1; static int missingPackets1;
     static double avgBigTime2; static double percentCalculator2; static double total2;
-    static int presentPackets2; static int missingPackets2; static int counter2;
+    static int presentPackets2; static int missingPackets2;
     static double avgBigTime3; static double percentCalculator3; static double total3;
-    static int presentPackets3; static int missingPackets3; static int counter3;
+    static int presentPackets3; static int missingPackets3;
     static double avgBigTime4; static double percentCalculator4; static double total4;
-    static int presentPackets4; static int missingPackets4; static int counter4;
+    static int presentPackets4; static int missingPackets4;
 
     static double minusOne; static double plusOne;
 
@@ -101,6 +101,8 @@ public class AutomateRewrite {
                 writeClear(s3);
                 writeClear(s4);
 
+                empty = true;
+
                 try {
                     for(File files: directory.listFiles()) {
                         runEach(files);
@@ -110,12 +112,15 @@ public class AutomateRewrite {
                     System.out.println("Error1");
                 }
 
-                avgBigTime1 = avgBigTime1 / counter1;
-                avgBigTime2 = avgBigTime2 / counter2;
-                avgBigTime3 = avgBigTime3 / counter3;
-                avgBigTime4 = avgBigTime4 / counter4;
+                if(empty == false) {
+                    avgBigTime1 = avgBigTime1 / presentPackets1;
+                    avgBigTime2 = avgBigTime2 / presentPackets2;
+                    avgBigTime3 = avgBigTime3 / presentPackets3;
+                    avgBigTime4 = avgBigTime4 / presentPackets4;
 
-                writeData();
+                    writeData();
+                }
+
                 instance++;
                 occurrence = occurHold.get(instance);
             }
@@ -162,13 +167,16 @@ public class AutomateRewrite {
             writeFile(a4, "  - Amount of positive packets found... " + presentPackets4 + "\n");
             writeFile(a4, "  - Amount of missing packets... " + missingPackets4 + "\n");
         }
-        catch(Exception FileNotFoundException) {
+        catch(Exception e) {
+            System.out.println(e);
             System.out.println("Error6");
         }
     }
 
     static ArrayList<Double> positivePackets = new ArrayList<>();
     // This is going to store all positive packets in order
+
+    static boolean empty = true;
 
     public static void runEach(File file) {
         try{
@@ -197,7 +205,7 @@ public class AutomateRewrite {
                     if(i==2) {
                         timeInitial = time;
                     }
-                    if(packet > 0) {
+                    if(packet > 0.0) {
                         if(!(reference.contains(packet))) {
                             positivePackets.add(time);
                         }
@@ -217,58 +225,80 @@ public class AutomateRewrite {
                 df.setMaximumFractionDigits(6);
 
                 if(!(positivePackets.isEmpty())) {
-                    if(positivePackets.get(0) != null) {
-                        earliest1 = positivePackets.get(0);
-                        String save1 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest1)+"\n";
-                        writeFile(s1, save1);
-                        if((minusOne <= (timeInitial - earliest1)) && ((timeInitial - earliest1) <= plusOne)) {
-                            percentCalculator1++;
-                        }
-                        avgBigTime1 += (timeInitial - earliest1);
-                        presentPackets1++; total1++;
-                    }
-                    else missingPackets1++;
+                    empty = false;
 
-                    if(positivePackets.get(1) != null) {
-                        earliest2 = positivePackets.get(1);
-                        String save2 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest2)+"\n";
-                        writeFile(s2, save2);
-                        if((minusOne <= (timeInitial - earliest2)) && ((timeInitial - earliest2) <= plusOne)) {
-                            percentCalculator2++;
+                    try {
+                        if(positivePackets.get(0) != null) {
+                            earliest1 = positivePackets.get(0);
+                            String save1 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest1)+"\n";
+                            writeFile(s1, save1);
+                            if((minusOne <= (earliest1 - timeInitial)) && ((earliest1 - timeInitial) <= plusOne)) {
+                                percentCalculator1++;
+                            }
+                            avgBigTime1 += (earliest1 - timeInitial);
+                            presentPackets1++; total1++;
                         }
-                        avgBigTime2 += (timeInitial - earliest2);
-                        presentPackets2++; total2++;
+                        else missingPackets1++;
                     }
-                    else missingPackets2++;
+                    catch(Exception e) {
 
-                    if(positivePackets.get(2) != null) {
-                        earliest3 = positivePackets.get(2);
-                        String save3 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest3)+"\n";
-                        writeFile(s3, save3);
-                        if((minusOne <= (timeInitial - earliest3)) && ((timeInitial - earliest3) <= plusOne)) {
-                            percentCalculator3++;
-                        }
-                        avgBigTime3 += (timeInitial - earliest3);
-                        presentPackets3++; total3++;
                     }
-                    else missingPackets3++;
 
-                    if(positivePackets.get(3) != null) {
-                        earliest4 = positivePackets.get(3);
-                        String save4 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest4)+"\n";
-                        writeFile(s4, save4);
-                        if((minusOne <= (timeInitial - earliest4)) && ((timeInitial - earliest4) <= plusOne)) {
-                            percentCalculator4++;
+                    try {
+                        if(positivePackets.get(1) != null) {
+                            earliest2 = positivePackets.get(1);
+                            String save2 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest2)+"\n";
+                            writeFile(s2, save2);
+                            if((minusOne <= (earliest2 - timeInitial)) && ((earliest2 - timeInitial) <= plusOne)) {
+                                percentCalculator2++;
+                            }
+                            avgBigTime2 += (earliest2 - timeInitial);
+                            presentPackets2++; total2++;
                         }
-                        avgBigTime4 += (timeInitial - earliest4);
-                        presentPackets4++; total4++;
+                        else missingPackets2++;
                     }
-                    else missingPackets4++;
+                    catch(Exception e) {
+
+                    }
+
+                    try {
+                        if(positivePackets.get(2) != null) {
+                            earliest3 = positivePackets.get(2);
+                            String save3 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest3)+"\n";
+                            writeFile(s3, save3);
+                            if((minusOne <= (earliest3 - timeInitial)) && ((earliest3 - timeInitial) <= plusOne)) {
+                                percentCalculator3++;
+                            }
+                            avgBigTime3 += (earliest3 - timeInitial);
+                            presentPackets3++; total3++;
+                        }
+                        else missingPackets3++;
+                    }
+                    catch(Exception e) {
+
+                    }
+
+                    try {
+                        if(positivePackets.get(3) != null) {
+                            earliest4 = positivePackets.get(3);
+                            String save4 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest4)+"\n";
+                            writeFile(s4, save4);
+                            if((minusOne <= (earliest4 - timeInitial)) && ((earliest4 - timeInitial) <= plusOne)) {
+                                percentCalculator4++;
+                            }
+                            avgBigTime4 += (earliest4 - timeInitial);
+                            presentPackets4++; total4++;
+                        }
+                        else missingPackets4++;
+                    }
+                    catch(Exception e) {
+
+                    }
                 }
+                z++;
             }
             // while loop ends
 
-            z++;
             scanner.close();
         }
         catch(Exception e) {
@@ -381,16 +411,16 @@ public class AutomateRewrite {
 
     public static void resetValues() {
         avgBigTime1 = 0.0; percentCalculator1 = 0.0; total1 = 0.0;
-        presentPackets1 = 0; missingPackets1 = 0; counter1 = 0;
+        presentPackets1 = 0; missingPackets1 = 0;
 
         avgBigTime2 = 0.0; percentCalculator2 = 0.0; total2 = 0.0;
-        presentPackets2 = 0; missingPackets2 = 0; counter2 = 0;
+        presentPackets2 = 0; missingPackets2 = 0;
 
         avgBigTime3 = 0.0; percentCalculator3 = 0.0; total3 = 0.0;
-        presentPackets3 = 0; missingPackets3 = 0; counter3 = 0;
+        presentPackets3 = 0; missingPackets3 = 0;
 
         avgBigTime4 = 0.0; percentCalculator4 = 0.0; total4 = 0.0;
-        presentPackets4 = 0; missingPackets4 = 0; counter4 = 0;
+        presentPackets4 = 0; missingPackets4 = 0;
     }
 
 }
