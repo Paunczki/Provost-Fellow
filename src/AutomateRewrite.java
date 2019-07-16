@@ -235,10 +235,10 @@ public class AutomateRewrite {
                             if((minusOne <= (earliest1 - timeInitial)) && ((earliest1 - timeInitial) <= plusOne)) {
                                 percentCalculator1++;
                             }
+                            else missingPackets1++;
                             avgBigTime1 += (earliest1 - timeInitial);
                             presentPackets1++; total1++;
                         }
-                        else missingPackets1++;
                     }
                     catch(Exception e) {
 
@@ -252,10 +252,10 @@ public class AutomateRewrite {
                             if((minusOne <= (earliest2 - timeInitial)) && ((earliest2 - timeInitial) <= plusOne)) {
                                 percentCalculator2++;
                             }
+                            else missingPackets2++;
                             avgBigTime2 += (earliest2 - timeInitial);
                             presentPackets2++; total2++;
                         }
-                        else missingPackets2++;
                     }
                     catch(Exception e) {
 
@@ -269,10 +269,10 @@ public class AutomateRewrite {
                             if((minusOne <= (earliest3 - timeInitial)) && ((earliest3 - timeInitial) <= plusOne)) {
                                 percentCalculator3++;
                             }
+                            else missingPackets3++;
                             avgBigTime3 += (earliest3 - timeInitial);
                             presentPackets3++; total3++;
                         }
-                        else missingPackets3++;
                     }
                     catch(Exception e) {
 
@@ -286,10 +286,10 @@ public class AutomateRewrite {
                             if((minusOne <= (earliest4 - timeInitial)) && ((earliest4 - timeInitial) <= plusOne)) {
                                 percentCalculator4++;
                             }
+                            else missingPackets4++;
                             avgBigTime4 += (earliest4 - timeInitial);
                             presentPackets4++; total4++;
                         }
-                        else missingPackets4++;
                     }
                     catch(Exception e) {
 
