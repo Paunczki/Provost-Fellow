@@ -90,39 +90,47 @@ public class AutomateRewrite {
             int instance = 0;
             occurrence = occurHold.get(0);
 
-            while(occurrence != null) {
-                createReference(occurrence);
-                //System.out.println(reference);
-                //System.out.println(occurrence);
-                resetValues();
+            try {
+                while(occurrence != null) {
+                    long time3 = System.currentTimeMillis();
+                    createReference(occurrence);
+                    //System.out.println(reference);
+                    //System.out.println(occurrence);
+                    resetValues();
 
-                writeClear(s1);
-                writeClear(s2);
-                writeClear(s3);
-                writeClear(s4);
+                    writeClear(s1);
+                    writeClear(s2);
+                    writeClear(s3);
+                    writeClear(s4);
 
-                empty = true;
+                    empty = true;
 
-                try {
-                    for(File files: directory.listFiles()) {
-                        runEach(files);
+                    try {
+                        for(File files: directory.listFiles()) {
+                            runEach(files);
+                        }
                     }
-                }
-                catch(Exception e) {
-                    System.out.println("Error1");
-                }
+                    catch(Exception e) {
+                        System.out.println("Error1");
+                    }
 
-                if(empty == false) {
-                    avgBigTime1 = avgBigTime1 / presentPackets1;
-                    avgBigTime2 = avgBigTime2 / presentPackets2;
-                    avgBigTime3 = avgBigTime3 / presentPackets3;
-                    avgBigTime4 = avgBigTime4 / presentPackets4;
+                    if(empty == false) {
+                        avgBigTime1 = avgBigTime1 / presentPackets1;
+                        avgBigTime2 = avgBigTime2 / presentPackets2;
+                        avgBigTime3 = avgBigTime3 / presentPackets3;
+                        avgBigTime4 = avgBigTime4 / presentPackets4;
 
-                    writeData();
+                        writeData();
+                    }
+
+                    instance++;
+                    occurrence = occurHold.get(instance);
+                    long time4 = System.currentTimeMillis();
+                    System.out.println((time4-time3)/1000.0);
                 }
-
-                instance++;
-                occurrence = occurHold.get(instance);
+            }
+            catch(Exception IndexOutOfBoundsException) {
+                continue;
             }
         }
     }
@@ -209,6 +217,9 @@ public class AutomateRewrite {
                         if(!(reference.contains(packet))) {
                             positivePackets.add(time);
                         }
+                        if(positivePackets.size() >= 4) {
+                            break;
+                        }
                     }
                 }
 
@@ -228,72 +239,63 @@ public class AutomateRewrite {
                     empty = false;
 
                     try {
-                        if(positivePackets.get(0) != null) {
-                            earliest1 = positivePackets.get(0);
-                            String save1 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest1)+"\n";
-                            writeFile(s1, save1);
-                            if((minusOne <= (earliest1 - timeInitial)) && ((earliest1 - timeInitial) <= plusOne)) {
-                                percentCalculator1++;
-                            }
-                            else missingPackets1++;
-                            avgBigTime1 += (earliest1 - timeInitial);
-                            presentPackets1++; total1++;
+                        earliest1 = positivePackets.get(0);
+                        String save1 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest1)+"\n";
+                        writeFile(s1, save1);
+                        if((minusOne <= (earliest1 - timeInitial)) && ((earliest1 - timeInitial) <= plusOne)) {
+                            percentCalculator1++;
                         }
+                        avgBigTime1 += (earliest1 - timeInitial);
+                        presentPackets1++; total1++;
                     }
-                    catch(Exception e) {
-
+                    catch(Exception IndexOutOfBoundsException) {
+                        missingPackets1++; total1++;
                     }
 
                     try {
-                        if(positivePackets.get(1) != null) {
-                            earliest2 = positivePackets.get(1);
-                            String save2 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest2)+"\n";
-                            writeFile(s2, save2);
-                            if((minusOne <= (earliest2 - timeInitial)) && ((earliest2 - timeInitial) <= plusOne)) {
-                                percentCalculator2++;
-                            }
-                            else missingPackets2++;
-                            avgBigTime2 += (earliest2 - timeInitial);
-                            presentPackets2++; total2++;
+                        earliest2 = positivePackets.get(1);
+                        String save2 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest2)+"\n";
+                        writeFile(s2, save2);
+                        if((minusOne <= (earliest2 - timeInitial)) && ((earliest2 - timeInitial) <= plusOne)) {
+                            percentCalculator2++;
                         }
+                        avgBigTime2 += (earliest2 - timeInitial);
+                        presentPackets2++; total2++;
                     }
-                    catch(Exception e) {
-
+                    catch(Exception IndexOutOfBoundsException) {
+                        missingPackets2++; total2++;
                     }
 
                     try {
-                        if(positivePackets.get(2) != null) {
-                            earliest3 = positivePackets.get(2);
-                            String save3 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest3)+"\n";
-                            writeFile(s3, save3);
-                            if((minusOne <= (earliest3 - timeInitial)) && ((earliest3 - timeInitial) <= plusOne)) {
-                                percentCalculator3++;
-                            }
-                            else missingPackets3++;
-                            avgBigTime3 += (earliest3 - timeInitial);
-                            presentPackets3++; total3++;
+                        earliest3 = positivePackets.get(2);
+                        String save3 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest3)+"\n";
+                        writeFile(s3, save3);
+                        if((minusOne <= (earliest3 - timeInitial)) && ((earliest3 - timeInitial) <= plusOne)) {
+                            percentCalculator3++;
                         }
+                        avgBigTime3 += (earliest3 - timeInitial);
+                        presentPackets3++; total3++;
                     }
-                    catch(Exception e) {
-
+                    catch(Exception IndexOutOfBoundsException) {
+                        missingPackets3++; total3++;
                     }
 
                     try {
-                        if(positivePackets.get(3) != null) {
-                            earliest4 = positivePackets.get(3);
-                            String save4 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest4)+"\n";
-                            writeFile(s4, save4);
-                            if((minusOne <= (earliest4 - timeInitial)) && ((earliest4 - timeInitial) <= plusOne)) {
-                                percentCalculator4++;
-                            }
-                            else missingPackets4++;
-                            avgBigTime4 += (earliest4 - timeInitial);
-                            presentPackets4++; total4++;
+                        earliest4 = positivePackets.get(3);
+                        String save4 = "line " +z+","+df.format(timeInitial)+","+df.format(earliest4)+"\n";
+                        writeFile(s4, save4);
+                        if((minusOne <= (earliest4 - timeInitial)) && ((earliest4 - timeInitial) <= plusOne)) {
+                            percentCalculator4++;
                         }
+                        avgBigTime4 += (earliest4 - timeInitial);
+                        presentPackets4++; total4++;
                     }
-                    catch(Exception e) {
-
+                    catch(Exception IndexOutOfBoundsException) {
+                        missingPackets4++; total4++;
                     }
+                }
+                else{
+                    missingPackets1++; missingPackets2++; missingPackets3++; missingPackets4++;
                 }
                 z++;
             }
