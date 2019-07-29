@@ -4,7 +4,7 @@ import java.lang.Math;
 public class MedianFinder {
 	private static ArrayList<Double> avgTimes = new ArrayList<Double>();
 	public static void main(String[] args) throws FileNotFoundException {
-		//System.out.println("Median time taken was: " + work("saveFileName5"));
+		System.out.println(worker(new File("saveFirst")));
 	}
 	public MedianFinder() throws FileNotFoundException {
 		fileDataWrites("  - Median time taken was: " + work("saveFileName6") + "\n");
@@ -21,6 +21,7 @@ public class MedianFinder {
 			try {
 				apples = data.split(",");
 				Double difference = Double.parseDouble(apples[2]) - Double.parseDouble(apples[1]);
+				System.out.println(Double.parseDouble(apples[2]) + "  -  " + Double.parseDouble(apples[1]));
 				mean += difference;
 				avgTimes.add(difference);
 			}

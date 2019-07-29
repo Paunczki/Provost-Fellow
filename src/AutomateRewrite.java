@@ -1,25 +1,14 @@
 import java.util.*;
 import java.io.*;
 import java.text.DecimalFormat;
-// import java.lang.Math;
 
 public class AutomateRewrite {
-	/*
-	 	What needs to be added when working on these files
-	 		Need the 3 directories (not attached on GitHub for privacy issues)
-	 		writeReferences5
-	 		4 data information files
-	 		4 files for temporary holding
-	 */
-
-    // This time we are not skipping any of the files
-
     public static void main(String[] args) {
         long time1 = System.currentTimeMillis();
         run();
         long time2 = System.currentTimeMillis();
         double stopwatch = (time2-time1)/1000.000;
-        System.out.println("Time taken: " + stopwatch);
+        System.out.println("Time taken: " + stopwatch + " seconds");
     }
 
     static File a1 = new File("automatedFirst");
@@ -54,9 +43,6 @@ public class AutomateRewrite {
 
         occurHold.clear();
         nextOccurrence();
-        // System.out.println(occurHold);
-        // allowed to be held constant since reference stays the same
-        // if wants to be changed see the createReference() method
 
         for(int i=0; i<2; i++) {
             if(i == 0) {
@@ -86,16 +72,12 @@ public class AutomateRewrite {
             writeFile(a3, show);
             writeFile(a4, show);
 
-            // Now do work for all directories
             int instance = 0;
             occurrence = occurHold.get(0);
 
             try {
                 while(occurrence != null) {
-                    long time3 = System.currentTimeMillis();
                     createReference(occurrence);
-                    //System.out.println(reference);
-                    //System.out.println(occurrence);
                     resetValues();
 
                     writeClear(s1);
@@ -125,8 +107,6 @@ public class AutomateRewrite {
 
                     instance++;
                     occurrence = occurHold.get(instance);
-                    long time4 = System.currentTimeMillis();
-                    System.out.println((time4-time3)/1000.0);
                 }
             }
             catch(Exception IndexOutOfBoundsException) {
@@ -299,7 +279,6 @@ public class AutomateRewrite {
                 }
                 z++;
             }
-            // while loop ends
 
             scanner.close();
         }
@@ -316,14 +295,6 @@ public class AutomateRewrite {
         // uses the file writeReferences5
         // which has format --> packet-size  |  numberOfOccurrences
 
-		/*
-		 	Currently the reference is created by counting all number of occurrences
-		 		from the "result" directory
-		 	The result directory is the longest running directory
-		 	If you want to change the directory used for reference, use HashCount.java
-		 		Now can be automated so reference can be used automatically
-		 */
-
         reference.clear();
         try {
             File scanFile = new File("writeReferences5");
@@ -332,14 +303,6 @@ public class AutomateRewrite {
             String[] split;
             Double occur;
             Double packet;
-
-			/*
-			 	Quick brainstorm about saving reference
-			 		Maybe check to only add positive packet-sizes to reference
-			 		Then to see if it is in it then we can pass with it
-			 		Since we will check the packets in time
-			 			They go in order
-			 */
 
             while(refScan.hasNextLine()) {
                 instance = refScan.nextLine();
@@ -386,7 +349,6 @@ public class AutomateRewrite {
     }
 
     public static void writeFile(File file, String input) {
-        // Reference is created from file HashCount.java
         BufferedWriter bf;
 
         try {
