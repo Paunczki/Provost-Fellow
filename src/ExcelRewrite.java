@@ -25,34 +25,63 @@ public class ExcelRewrite {
         clear(avg10); clear(median10); clear(percent10); clear(stdev10);
         clear(avg20); clear(median20); clear(percent20); clear(stdev20);
 
-        for(int i=0; i<4; i++){
-            if(i==0){
-                scanner = new Scanner(a1);
-                work();
-                writeToFile(avg10,"\n\n\n\n");writeToFile(median10,"\n\n\n\n");writeToFile(percent10,"\n\n\n\n");writeToFile(stdev10,"\n\n\n\n");
-                writeToFile(avg20,"\n\n\n\n");writeToFile(median20,"\n\n\n\n");writeToFile(percent20,"\n\n\n\n");writeToFile(stdev20,"\n\n\n\n");
-            }
-            if(i==1){
-                scanner = new Scanner(a2);
-                work();
-                writeToFile(avg10,"\n\n\n\n");writeToFile(median10,"\n\n\n\n");writeToFile(percent10,"\n\n\n\n");writeToFile(stdev10,"\n\n\n\n");
-                writeToFile(avg20,"\n\n\n\n");writeToFile(median20,"\n\n\n\n");writeToFile(percent20,"\n\n\n\n");writeToFile(stdev20,"\n\n\n\n");
-            }
-            if(i==2){
-                scanner = new Scanner(a3);
-                work();
-                writeToFile(avg10,"\n\n\n\n");writeToFile(median10,"\n\n\n\n");writeToFile(percent10,"\n\n\n\n");writeToFile(stdev10,"\n\n\n\n");
-                writeToFile(avg20,"\n\n\n\n");writeToFile(median20,"\n\n\n\n");writeToFile(percent20,"\n\n\n\n");writeToFile(stdev20,"\n\n\n\n");
-            }
-            if(i==3){
-                scanner = new Scanner(a4);
-                work();
-                writeToFile(avg10,"\n\n\n\n");writeToFile(median10,"\n\n\n\n");writeToFile(percent10,"\n\n\n\n");writeToFile(stdev10,"\n\n\n\n");
-                writeToFile(avg20,"\n\n\n\n");writeToFile(median20,"\n\n\n\n");writeToFile(percent20,"\n\n\n\n");writeToFile(stdev20,"\n\n\n\n");
+        try {
+            for (int i = 0; i < 4; i++) {
+                if (i == 0) {
+                    scanner = new Scanner(a1);
+                    work();
+                    writeToFile(avg10, "\n\n\n\n");
+                    writeToFile(median10, "\n\n\n\n");
+                    writeToFile(percent10, "\n\n\n\n");
+                    writeToFile(stdev10, "\n\n\n\n");
+                    writeToFile(avg20, "\n\n\n\n");
+                    writeToFile(median20, "\n\n\n\n");
+                    writeToFile(percent20, "\n\n\n\n");
+                    writeToFile(stdev20, "\n\n\n\n");
+                }
+                if (i == 1) {
+                    scanner = new Scanner(a2);
+                    work();
+                    writeToFile(avg10, "\n\n\n\n");
+                    writeToFile(median10, "\n\n\n\n");
+                    writeToFile(percent10, "\n\n\n\n");
+                    writeToFile(stdev10, "\n\n\n\n");
+                    writeToFile(avg20, "\n\n\n\n");
+                    writeToFile(median20, "\n\n\n\n");
+                    writeToFile(percent20, "\n\n\n\n");
+                    writeToFile(stdev20, "\n\n\n\n");
+                }
+                if (i == 2) {
+                    scanner = new Scanner(a3);
+                    work();
+                    writeToFile(avg10, "\n\n\n\n");
+                    writeToFile(median10, "\n\n\n\n");
+                    writeToFile(percent10, "\n\n\n\n");
+                    writeToFile(stdev10, "\n\n\n\n");
+                    writeToFile(avg20, "\n\n\n\n");
+                    writeToFile(median20, "\n\n\n\n");
+                    writeToFile(percent20, "\n\n\n\n");
+                    writeToFile(stdev20, "\n\n\n\n");
+                }
+                if (i == 3) {
+                    scanner = new Scanner(a4);
+                    work();
+                    writeToFile(avg10, "\n\n\n\n");
+                    writeToFile(median10, "\n\n\n\n");
+                    writeToFile(percent10, "\n\n\n\n");
+                    writeToFile(stdev10, "\n\n\n\n");
+                    writeToFile(avg20, "\n\n\n\n");
+                    writeToFile(median20, "\n\n\n\n");
+                    writeToFile(percent20, "\n\n\n\n");
+                    writeToFile(stdev20, "\n\n\n\n");
+                }
             }
         }
+        catch(FileNotFoundException e){
+            System.out.println("Error4");
+        }
 
-        long time1 = System.currentTimeMillis();
+        long time2 = System.currentTimeMillis();
         System.out.println("Time taken: " + ((time2-time1)/1000.00) + " seconds");
     }
 
@@ -61,22 +90,24 @@ public class ExcelRewrite {
         File OccVmedianTime = median10;
         File OccVpercentCorrect = percent10;
         File OccVstdev = stdev10;
+        String temp = "";
+        String subTemp = "";
         while(scanner.hasNextLine()){
             try{
-                temp = sc.nextLine();
+                temp = scanner.nextLine();
 				subTemp = temp.substring(0, 5);
 				if(subTemp.equals("Occur")) {
 					String occur = temp.substring(14);
-					temp = sc.nextLine();
+					temp = scanner.nextLine();
 					String median = temp.substring(27)+"\n";
 					writeToFile(OccVmedianTime, occur+":"+median);
-					temp = sc.nextLine();
+					temp = scanner.nextLine();
 					String stdev = temp.substring(27)+"\n";
 					writeToFile(OccVstdev, occur+":"+stdev);
-					temp = sc.nextLine();
+					temp = scanner.nextLine();
 					String avgTime = temp.substring(32,46);
 					writeToFile(OccVavgTime, occur+":"+avgTime+"\n");
-					temp = sc.nextLine();
+					temp = scanner.nextLine();
 					String percentCorrect = temp.substring(4,7);
 					writeToFile(OccVpercentCorrect, occur+":"+percentCorrect+"\n");
                 }
