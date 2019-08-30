@@ -1,15 +1,15 @@
 import java.util.*;
 import java.io.*;
 import java.lang.Math;
-public class MedianFinder {
+public class TwentyMedianFinder {
 	private static ArrayList<Double> avgTimes = new ArrayList<Double>();
 	public static void main(String[] args) throws FileNotFoundException {
 		// System.out.println(worker(new File("saveFirst")));
 	}
-	public MedianFinder() throws FileNotFoundException {
+	public TwentyMedianFinder() throws FileNotFoundException {
 		fileDataWrites("  - Median time taken was: " + work("saveFileName6") + "\n");
 	}
-	public MedianFinder(File savedFile, File writeFile) throws FileNotFoundException {
+	public TwentyMedianFinder(File savedFile, File writeFile) throws FileNotFoundException {
 		fileData(writeFile, "  - Median time taken was: " + worker(savedFile) + "\n");
 	}
 	public static String worker(File saveFile) throws FileNotFoundException {

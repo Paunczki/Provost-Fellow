@@ -1,9 +1,9 @@
 import java.util.*;
 import java.io.*;
-public class HashCount {
+public class get20ref {
 	static HashMap<Double, Integer> map = new HashMap<Double, Integer>();
 
-	public HashCount(File dirForReference) throws FileNotFoundException {
+	public get20ref(File dirForReference) throws FileNotFoundException {
 		run(dirForReference);
 	}
 

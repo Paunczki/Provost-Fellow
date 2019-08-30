@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.text.DecimalFormat;
 
-public class AutomateRewrite {
+public class TenAutomateRewrite {
     public static void main(String[] args) {
         long time1 = System.currentTimeMillis();
         run();
@@ -11,15 +11,15 @@ public class AutomateRewrite {
         System.out.println("Time taken: " + stopwatch + " seconds");
     }
 
-    static File a1 = new File("20refMethod/20vautomatedFirst");
-    static File a2 = new File("20refMethod/20vautomatedSecond");
-    static File a3 = new File("20refMethod/20vautomatedThird");
-    static File a4 = new File("20refMethod/20vautomatedFourth");
+    static File a1 = new File("10refMethod/10vautomatedFirst");
+    static File a2 = new File("10refMethod/10vautomatedSecond");
+    static File a3 = new File("10refMethod/10vautomatedThird");
+    static File a4 = new File("10refMethod/10vautomatedFourth");
 
-    static File s1 = new File("20refMethod/20vsaveFirst");
-    static File s2 = new File("20refMethod/20vsaveSecond");
-    static File s3 = new File("20refMethod/20vsaveThird");
-    static File s4 = new File("20refMethod/20vsaveFourth");
+    static File s1 = new File("10refMethod/10vsaveFirst");
+    static File s2 = new File("10refMethod/10vsaveSecond");
+    static File s3 = new File("10refMethod/10vsaveThird");
+    static File s4 = new File("10refMethod/10vsaveFourth");
 
     static Double occurrence;
 
@@ -121,7 +121,7 @@ public class AutomateRewrite {
 
             // For first positive packet
             writeFile(a1, occurrenceInput);
-            MedianFinder e = new MedianFinder(s1, a1);
+            TenMedianFinder e = new TenMedianFinder(s1, a1);
             writeFile(a1, "  - Average time throughout was " + avgBigTime1 + " seconds\n");
             writeFile(a1, "  - " + (percentCalculator1 / total1)*100.0 + "% correct\n");
             writeFile(a1, "  - Total Packets tested... " + total1 + "\n");
@@ -130,7 +130,7 @@ public class AutomateRewrite {
 
             // For second positive packet
             writeFile(a2, occurrenceInput);
-            MedianFinder f = new MedianFinder(s2, a2);
+            TenMedianFinder f = new TenMedianFinder(s2, a2);
             writeFile(a2, "  - Average time throughout was " + avgBigTime2 + " seconds\n");
             writeFile(a2, "  - " + (percentCalculator2 / total2)*100.0 + "% correct\n");
             writeFile(a2, "  - Total Packets tested... " + total2 + "\n");
@@ -139,7 +139,7 @@ public class AutomateRewrite {
 
             // For third positive packet
             writeFile(a3, occurrenceInput);
-            MedianFinder g = new MedianFinder(s3, a3);
+            TenMedianFinder g = new TenMedianFinder(s3, a3);
             writeFile(a3, "  - Average time throughout was " + avgBigTime3 + " seconds\n");
             writeFile(a3, "  - " + (percentCalculator3 / total3)*100.0 + "% correct\n");
             writeFile(a3, "  - Total Packets tested... " + total3 + "\n");
@@ -148,7 +148,7 @@ public class AutomateRewrite {
 
             // For fourth positive packet
             writeFile(a4, occurrenceInput);
-            MedianFinder h = new MedianFinder(s4, a4);
+            TenMedianFinder h = new TenMedianFinder(s4, a4);
             writeFile(a4, "  - Average time throughout was " + avgBigTime4 + " seconds\n");
             writeFile(a4, "  - " + (percentCalculator4 / total4)*100.0 + "% correct\n");
             writeFile(a4, "  - Total Packets tested... " + total4 + "\n");
@@ -297,7 +297,7 @@ public class AutomateRewrite {
 
         reference.clear();
         try {
-            File scanFile = new File("20refMethod/20vReference");
+            File scanFile = new File("10refMethod/10vReference");
             Scanner refScan = new Scanner(scanFile);
             String instance;
             String[] split;
@@ -326,7 +326,7 @@ public class AutomateRewrite {
 
     public static void nextOccurrence() {
         try {
-            Scanner scan = new Scanner(new File("20refMethod/20vReference"));
+            Scanner scan = new Scanner(new File("10refMethod/10vReference"));
             String line;
             String[] split;
             Double occurs;

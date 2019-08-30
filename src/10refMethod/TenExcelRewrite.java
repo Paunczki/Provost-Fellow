@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class ExcelRewrite {
+public class TenExcelRewrite {
     static File a1 = new File("10refMethod/10vautomatedFirst");
     static File a2 = new File("10refMethod/10vautomatedSecond");
     static File a3 = new File("10refMethod/10vautomatedThird");
