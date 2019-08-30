@@ -11,15 +11,15 @@ public class AutomateRewrite {
         System.out.println("Time taken: " + stopwatch + " seconds");
     }
 
-    static File a1 = new File("automatedFirst");
-    static File a2 = new File("automatedSecond");
-    static File a3 = new File("automatedThird");
-    static File a4 = new File("automatedFourth");
+    static File a1 = new File("10refMethod/10vautomatedFirst");
+    static File a2 = new File("10refMethod/10vautomatedSecond");
+    static File a3 = new File("10refMethod/10vautomatedThird");
+    static File a4 = new File("10refMethod/10vautomatedFourth");
 
-    static File s1 = new File("saveFirst");
-    static File s2 = new File("saveSecond");
-    static File s3 = new File("saveThird");
-    static File s4 = new File("saveFourth");
+    static File s1 = new File("10refMethod/10vsaveFirst");
+    static File s2 = new File("10refMethod/10vsaveSecond");
+    static File s3 = new File("10refMethod/10vsaveThird");
+    static File s4 = new File("10refMethod/10vsaveFourth");
 
     static Double occurrence;
 
@@ -297,7 +297,7 @@ public class AutomateRewrite {
 
         reference.clear();
         try {
-            File scanFile = new File("writeReferences5");
+            File scanFile = new File("10refMethod/10vReference");
             Scanner refScan = new Scanner(scanFile);
             String instance;
             String[] split;
@@ -326,7 +326,7 @@ public class AutomateRewrite {
 
     public static void nextOccurrence() {
         try {
-            Scanner scan = new Scanner(new File("writeReferences5"));
+            Scanner scan = new Scanner(new File("10refMethod/10vReference"));
             String line;
             String[] split;
             Double occurs;
