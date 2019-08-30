@@ -38,7 +38,7 @@ public class get10ref {
 	public static void writeReference(String input) {
 		BufferedWriter bf;
 		try{
-			bf = new BufferedWriter(new FileWriter("10refMethod/10vReference", true));
+			bf = new BufferedWriter(new FileWriter("10vReference", true));
 			bf.write(input);
 			bf.close();
 		}

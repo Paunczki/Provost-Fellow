@@ -2,20 +2,20 @@ import java.util.*;
 import java.io.*;
 
 public class TenExcelRewrite {
-    static File a1 = new File("10refMethod/10vautomatedFirst");
-    static File a2 = new File("10refMethod/10vautomatedSecond");
-    static File a3 = new File("10refMethod/10vautomatedThird");
-    static File a4 = new File("10refMethod/10vautomatedFourth");
+    static File a1 = new File("10vautomatedFirst");
+    static File a2 = new File("10vautomatedSecond");
+    static File a3 = new File("10vautomatedThird");
+    static File a4 = new File("10vautomatedFourth");
 
-    static File avg10 = new File("10refMethod/10v10occAverageTime");
-    static File median10 = new File("10refMethod/10v10occMedianTime");
-    static File percent10 = new File("10refMethod/10v10occPercentCorrect");
-    static File stdev10 = new File("10refMethod/10v10occStandardDeviation");
+    static File avg10 = new File("10v10occAverageTime");
+    static File median10 = new File("10v10occMedianTime");
+    static File percent10 = new File("10v10occPercentCorrect");
+    static File stdev10 = new File("10v10occStandardDeviation");
 
-    static File avg20 = new File("10refMethod/10v20occAverageTime");
-    static File median20 = new File("10refMethod/10v20occMedianTime");
-    static File percent20 = new File("10refMethod/10v20occPercentCorrect");
-    static File stdev20 = new File("10refMethod/10v20occStandardDeviation");
+    static File avg20 = new File("10v20occAverageTime");
+    static File median20 = new File("10v20occMedianTime");
+    static File percent20 = new File("10v20occPercentCorrect");
+    static File stdev20 = new File("10v20occStandardDeviation");
 
     static Scanner scanner;
     

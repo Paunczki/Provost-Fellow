@@ -11,15 +11,15 @@ public class TwentyAutomateRewrite {
         System.out.println("Time taken: " + stopwatch + " seconds");
     }
 
-    static File a1 = new File("20refMethod/20vautomatedFirst");
-    static File a2 = new File("20refMethod/20vautomatedSecond");
-    static File a3 = new File("20refMethod/20vautomatedThird");
-    static File a4 = new File("20refMethod/20vautomatedFourth");
+    static File a1 = new File("20vautomatedFirst");
+    static File a2 = new File("20vautomatedSecond");
+    static File a3 = new File("20vautomatedThird");
+    static File a4 = new File("20vautomatedFourth");
 
-    static File s1 = new File("20refMethod/20vsaveFirst");
-    static File s2 = new File("20refMethod/20vsaveSecond");
-    static File s3 = new File("20refMethod/20vsaveThird");
-    static File s4 = new File("20refMethod/20vsaveFourth");
+    static File s1 = new File("20vsaveFirst");
+    static File s2 = new File("20vsaveSecond");
+    static File s3 = new File("20vsaveThird");
+    static File s4 = new File("20vsaveFourth");
 
     static Double occurrence;
 
@@ -297,7 +297,7 @@ public class TwentyAutomateRewrite {
 
         reference.clear();
         try {
-            File scanFile = new File("20refMethod/20vReference");
+            File scanFile = new File("20vReference");
             Scanner refScan = new Scanner(scanFile);
             String instance;
             String[] split;
@@ -326,7 +326,7 @@ public class TwentyAutomateRewrite {
 
     public static void nextOccurrence() {
         try {
-            Scanner scan = new Scanner(new File("20refMethod/20vReference"));
+            Scanner scan = new Scanner(new File("20vReference"));
             String line;
             String[] split;
             Double occurs;

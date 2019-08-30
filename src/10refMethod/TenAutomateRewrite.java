@@ -11,15 +11,15 @@ public class TenAutomateRewrite {
         System.out.println("Time taken: " + stopwatch + " seconds");
     }
 
-    static File a1 = new File("10refMethod/10vautomatedFirst");
-    static File a2 = new File("10refMethod/10vautomatedSecond");
-    static File a3 = new File("10refMethod/10vautomatedThird");
-    static File a4 = new File("10refMethod/10vautomatedFourth");
+    static File a1 = new File("10vautomatedFirst");
+    static File a2 = new File("10vautomatedSecond");
+    static File a3 = new File("10vautomatedThird");
+    static File a4 = new File("10vautomatedFourth");
 
-    static File s1 = new File("10refMethod/10vsaveFirst");
-    static File s2 = new File("10refMethod/10vsaveSecond");
-    static File s3 = new File("10refMethod/10vsaveThird");
-    static File s4 = new File("10refMethod/10vsaveFourth");
+    static File s1 = new File("10vsaveFirst");
+    static File s2 = new File("10vsaveSecond");
+    static File s3 = new File("10vsaveThird");
+    static File s4 = new File("10vsaveFourth");
 
     static Double occurrence;
 
@@ -297,7 +297,7 @@ public class TenAutomateRewrite {
 
         reference.clear();
         try {
-            File scanFile = new File("10refMethod/10vReference");
+            File scanFile = new File("10vReference");
             Scanner refScan = new Scanner(scanFile);
             String instance;
             String[] split;
@@ -326,7 +326,7 @@ public class TenAutomateRewrite {
 
     public static void nextOccurrence() {
         try {
-            Scanner scan = new Scanner(new File("10refMethod/10vReference"));
+            Scanner scan = new Scanner(new File("10vReference"));
             String line;
             String[] split;
             Double occurs;
