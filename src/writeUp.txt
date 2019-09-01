@@ -1,0 +1,23 @@
+A high-level writeup as to how we receive and use our results since I cannot find a reason as
+to why the data is different.
+
+The process begins by ordering the occurrence thresholds from smallest to largest (numOccur).
+
+It then begins by accessing the 10s or 20s directories (the time that the second website begins).
+
+It then creates a reference based on the threshold provided from numOccur. It only adds packets
+to the reference if it is positive and its number of occurrence is larger than the threshold value.
+
+Now, go through each file within the given directory (about 111 files for 10s directory and 118
+for 20s directory).
+
+For each line in each file, find the first four positive packets whose number of occurrences is
+less than the threshold (trying to find the first unique positive packets).  Record the timestamp
+of when these occurred since we do not care what is the packetsize, only that it is unique.
+
+From here follow the same method of calculation from the earlier method that showed better results.
+
+Print the information of Average Time, Median Time, Percent Correct, and Standard Deviation to the
+respective file for the order it occurred in (automatedFirst for the first unique positive packet).
+
+Repeat the process for every line of every file. Later send to excel and create graphs.
