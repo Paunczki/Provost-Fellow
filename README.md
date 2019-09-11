@@ -13,5 +13,5 @@ Updated graphs: https://drive.google.com/open?id=1mjr9V20d85QMWm5G-QQ9dCazE6swHT
 
 ## TODO
 - WriteUp on graphs (why they appear the way they do)
-- Create all the Excel graphs for 10ref and 20ref
 - Make a downloadable link for Mozilla and Chrome and create walkthrough
+- Work on Poster for conference
