@@ -1,0 +1,142 @@
+CODE
+
+A high-level writeup as to how we receive and use our results since I cannot find a reason as
+to why the data is different.
+
+The process begins by ordering the occurrence thresholds from smallest to largest (numOccur).
+
+It then begins by accessing the 10s or 20s directories (the time that the second website begins).
+
+It then creates a reference based on the threshold provided from numOccur. It only adds packets
+to the reference if it is positive and its number of occurrence is larger than the threshold value.
+
+Now, go through each file within the given directory (about 111 files for 10s directory and 118
+for 20s directory).
+
+For each line in each file, find the first four positive packets whose number of occurrences is
+less than the threshold (trying to find the first unique positive packets).  Record the timestamp
+of when these occurred since we do not care what is the packetsize, only that it is unique.
+
+From here follow the same method of calculation from the earlier method that showed better results.
+
+Print the information of Average Time, Median Time, Percent Correct, and Standard Deviation to the
+respective file for the order it occurred in (automatedFirst for the first unique positive packet).
+
+Repeat the process for every line of every file. Later send to excel and create graphs.
+
+
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+---------------------------------------------------------------------------------------------------
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+
+GRAPHS
+
+Overall it seems that the graphs look very similar when you look higher level
+There are some outliers which are visible when zooming in, will try to make sense of
+
+Expected
+ - Average Time
+    - As occurrence increases, we expect to see a decrease in average time because the threshold 
+      increases which allows for later presenece of unique positive packets
+    - From viewing the lines from bottom to top we should see First, Second, Third, Fourth 
+      unique positive packets because the first unique positive packet should be present before
+      the Second, the Second before the Third, and the Third one before the Fourth
+ - Median Time
+    - As occurrence increases, we expect to see a decrease in median time because the threshold 
+      increases which allows for later presenece of unique positive packets
+    - From viewing the lines from bottom to top we should see First, Second, Third, Fourth 
+      unique positive packets because the first unique positive packet should be present before
+      the Second, the Second before the Third, and the Third one before the Fourth
+ - Percent Correct
+    - We expect to see a large upwards spike at some occurrence point, and then a fall back down
+    - With viewing the lines from top to bottom, we should see the First, Second, Third, Fourth
+      because we believe the first positive packet is the best identifier of when a website starts
+ - Standard Deviation
+    - We first expect the standard deviation value to increase as occurrence begins to find 
+      timestamps that are not very early. Then, at some point, we expect the standard deviation to 
+      begin decreasing as occurrence increases and later timestamps of positive packets appear
+    - From viewing the lines from bottom to top we should see First, Second, Third, Fourth 
+      unique positive packets because the first unique positive packet should be present before
+      the Second, the Second before the Third, and the Third one before the Fourth
+
+10s Reference
+ - 10v10occAverageTime
+     - 
+ - 10v10occMedianTime
+     - 
+ - 10v10occPercentCorrect
+     - 
+ - 10v10occStandardDeviation
+     - 
+ - 10v20occAverageTime
+     - 
+ - 10v20occMedianTime
+     - 
+ - 10v20occPercentCorrect
+     - 
+ - 10v20occStandardDeviation
+     - 
+
+20s Reference
+ - 20v10occAverageTime
+     - 
+ - 20v10occMedianTime
+     - 
+ - 20v10occPercentCorrect
+     - 
+ - 20v10occStandardDeviation
+     - 
+ - 20v20occAverageTime
+     - 
+ - 20v20occMedianTime
+     - 
+ - 20v20occPercentCorrect
+     - 
+ - 20v20occStandardDeviation
+     - 
+
+Train Reference
+ - 10oocAverageTime
+     - As expected for average time
+     - Does not get close to the correct time of 10 seconds
+     - Many outliers in the beginning, but later normalizes (meaning same shape)
+ - 10oocMedianTime
+     - As expected for median time
+     - Does not get close to the correct time of 10 seconds
+     - The lines of First, Second, Third, and Fourth positive packet overlap and are very similar
+ - 10oocPercentCorrect
+     - Percents steadily increase and then drop off at a certain point
+     - The highest percent seemed to be 10%, but a all line reached about 7.0%
+ - 10oocStandardDeviation
+     - As expected for standard deviation
+     - Except for first positive packet, the other lines are very similar and overlap a lot
+     - The standard deviations are very high which is not a good sign
+ - 20oocAverageTime
+     - As expected for average time
+     - Does not get close to the correct time of 20 seconds until late in the graph
+     - Very large variations in the beginning which could be due to not finding that second 
+       positive packet
+ - 20oocMedianTime
+     - Suprisingly increases in the beginning before dropping off as occurrence increases
+     - This median time does not reach 20 but is very close
+     - All lines are very similar and barely vary
+ - 20oocPercentCorrect
+     - The highest percent is about 6.7%, where all lines reach at least 5%
+     - Lot of variation between these lines
+     - it goes (from top to bottom) 1st, 2nd, 3rd, 4th, and then later inverts 
+       This may be due to the first positive packets beginning to lose its effectiveness
+ - 20oocStandardDeviation
+     - As expected for standard deviation
+     - Very little variation between lines
+     - The standard deviations are very high which is not a good sign
+
+
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+---------------------------------------------------------------------------------------------------
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+
+Looking forward
+
+We can look at the beginning outlier's performance to see the unqiueness of each packetsize
